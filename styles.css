@@ -2,16 +2,16 @@
 .yes-no-buttons {
     display: flex;
     justify-content: center;
-    gap: 2em;
-    margin-top: 2em;
+    gap: 1em; /* Reduce gap between buttons */
+    margin-top: 1em; /* Reduce top margin */
 }
 
 .yes-no-buttons button {
-    padding: 10px 20px;
+    padding: 5px 10px; /* Reduce padding */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 0.875rem; /* Reduce font size */
     transition: background-color 0.3s ease;
 }
 
@@ -28,18 +28,19 @@
 .yes-no-buttons button:hover {
     opacity: 0.8;
 }
+
 /* Second page content */
 .second-page {
-    margin-top: 2em;
-    padding: 2em;
+    margin-top: 1em; /* Reduce top margin */
+    padding: 1em; /* Reduce padding */
     background: linear-gradient(135deg, rgba(255, 36, 69, 0.4), rgba(255, 0, 153, 0.2)); /* Light pink fill with gradient */
     border: 3px solid #fa5cab; /* Different shade of pink border (Hot pink) */
     box-shadow: 
         0 10px 20px var(--shadow-color), /* Main shadow */
         inset 0 0 10px rgba(200, 65, 178, 0.6), /* Inner shadow for 3D effect */
         0 0 20px rgba(255, 255, 255, 0.5); /* Additional glow */
-    border-radius: 80px; /* Soft corners */
-    width: 70%;
+    border-radius: 40px; /* Reduce border radius */
+    width: 80%; /* Adjust width */
     text-align: center;
     transition: transform 0.3s ease; /* Smooth transition on hover */
 }
@@ -47,7 +48,6 @@
 .second-page:hover {
     transform: scale(1.05); /* Slightly enlarge on hover for added 3D effect */
 }
-
 
 /* Pop-up Modal */
 .popup {
@@ -57,19 +57,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ffdde1;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px; /* Further reduce padding */
+    border-radius: 10px; /* Maintain reduced border radius */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Maintain adjusted box shadow */
     text-align: center;
-    z-index: 1000;
-    width: 350px;
-    max-width: 90%;
+    z-index: 300;
+    width: 200px; /* Reduce width further */
+    max-width: 80%; /* Increase max-width for smaller screens */
 }
 
 .popup img {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-radius: 5px; /* Maintain adjusted border radius */
+    margin-bottom: 10px; /* Maintain reduced margin */
 }
 
 .popup-content {
@@ -82,7 +82,7 @@
     top: 10px;
     right: 15px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 1rem; /* Reduce font size */
     font-weight: bold;
     background: none;
     border: none;
@@ -109,15 +109,51 @@
 
 /* Random sizes */
 .floating-heart {
-    width: 30px;
-    height: 30px;
+    width: 20px; /* Reduce size */
+    height: 20px; /* Reduce size */
     background: url('heart.png') no-repeat center center; /* Path to heart image */
     background-size: contain;
 }
 
 .floating-note {
-    width: 30px;
-    height: 30px;
+    width: 20px; /* Reduce size */
+    height: 20px; /* Reduce size */
     background: url('note.png') no-repeat center center; /* Path to note image */
     background-size: contain;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 480px) {
+    .yes-no-buttons {
+        gap: 0.5em; /* Further reduce gap */
+        margin-top: 0.5em; /* Further reduce top margin */
+    }
+
+    .yes-no-buttons button {
+        padding: 3px 8px; /* Further reduce padding */
+        font-size: 0.75rem; /* Further reduce font size */
+    }
+
+    .second-page {
+        margin-top: 0.5em; /* Further reduce top margin */
+        padding: 0.5em; /* Further reduce padding */
+        width: 90%; /* Increase width for smaller screens */
+        border-radius: 20px; /* Further reduce border radius */
+    }
+
+    .popup {
+        padding: 5px; /* Further reduce padding */
+        width: 180px; /* Further reduce width */
+        max-width: 90%; /* Increase max-width for smaller screens */
+    }
+
+    .close-btn {
+        font-size: 0.875rem; /* Further reduce font size */
+    }
+
+    .floating-heart,
+    .floating-note {
+        width: 15px; /* Further reduce size */
+        height: 15px; /* Further reduce size */
+    }
 }
