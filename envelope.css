@@ -1,19 +1,19 @@
 /* Envelope Wrapper */
 .envelope-wrapper {
     background: var(--bg-envelope-color);
-    box-shadow: 0 10px 20px var(--shadow-color);
-    border-radius: 5px;
+    box-shadow: 0 5px 10px var(--shadow-color);
+    border-radius: 10px;
     padding: 20px;
-    margin-top: 260px;
+    margin-top: 40vh;
     position: relative;
 }
 
 /* Envelope styles */
 .envelope {
     position: relative;
-    width: 300px;
-    height: 230px;
-    margin: 0 auto; /* Center envelope horizontally */
+    width: 250px; /* Adjust the width of the envelope */
+    height: 200px; /* Adjust the height of the envelope */
+    margin: center; /* Center envelope horizontally */
 }
 
 .envelope::before {
@@ -21,9 +21,9 @@
     position: absolute;
     top: 0;
     z-index: 2;
-    border-top: 130px solid var(--envelope-tab);
-    border-right: 150px solid transparent;
-    border-left: 150px solid transparent;
+    border-top: 100px solid var(--envelope-tab); /* Adjust the top border height to maintain proportion */
+    border-right: 100px solid transparent;
+    border-left: 100px solid transparent;
     transform-origin: top;
     transition: all 0.5s ease-in-out;
 }
@@ -34,10 +34,11 @@
     z-index: 2;
     width: 0;
     height: 0;
-    border-top: 130px solid transparent;
-    border-right: 150px solid var(--envelope-cover);
-    border-bottom: 100px solid var(--envelope-cover);
-    border-left: 150px solid var(--envelope-cover);
+    /* Adjust the border sizes to change the back of the envelope */
+    border-top: 100px solid transparent;
+    border-right: 100px solid var(--envelope-cover); /* Adjust the right border size and color */
+    border-bottom: 50px solid var(--envelope-cover); /* Adjust the bottom border size and color */
+    border-left: 100px solid var(--envelope-cover); /* Adjust the left border size and color */
 }
 
 /* Letter styles */
@@ -45,8 +46,8 @@
     position: absolute;
     left: 50%; /* Center letter horizontally */
     bottom: 0;
-    width: 54%;
-    height: 80%;
+    width: 54%; /* Adjust the width of the letter */
+    height: 0%; /* Adjust the height of the letter */
     background: var(--primary);
     text-align: center;
     transition: all 1s ease-in-out;
@@ -55,13 +56,83 @@
     transform: translateX(-50%); /* Offset to center */
 }
 
+/* Smaller letter for mobile screens */
+@media (max-width: 480px) {
+    .letter {
+        width: 50%; /* Adjust the width of the letter for smaller screens */
+        height: 60%; /* Adjust the height of the letter for smaller screens */
+    }
+    .letter .text {
+        font-size: 5px; /* Adjust the font size of the letter text for smaller screens */
+    }
+}
+
 .letter .text {
     font-family: 'Sugar Gummy', cursive;
     color: var(--txt-color);
-    text-align: left;
-    font-size: 7.5px;
-    line-height: 1.5;
+    text-align: justify;
+    font-size: 5px; /* Adjust the font size of the letter text */
+    line-height: 1.3;
     padding: 10px;
+}
+
+/* Heart styles */
+.heart {
+    position: absolute;
+    bottom: 48px; /* Adjust the vertical position of the heart button */
+    left: 50%;
+    width: 15px; /* Adjust the width of the heart button */
+    height: 15px; /* Adjust the height of the heart button */
+    background: var(--heart-color);
+    transform: translateX(-50%) rotate(-45deg); /* Keep the heart centered and rotated */
+    cursor: pointer;
+    animation: heartbeat 1.348s infinite; /* Adjusted to match the tempo (2 beats duration) */
+    z-index: 5;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 15px; /* Adjust the width of the heart before/after elements */
+    height: 15px; /* Adjust the height of the heart before/after elements */
+    background: var(--heart-color);
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -8px; /* Adjust the top position of the heart before element */
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 8px; /* Adjust the left position of the heart after element */
+}
+
+.heart:hover {
+    background: var(--glow-color);
+    box-shadow: 0 0 20px 10px var(--glow-color);
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: translateX(-50%) rotate(-45deg) scale(1);
+    }
+    33% {
+        transform: translateX(-50%) rotate(-45deg) scale(1.2);
+    }
+    66% {
+        transform: translateX(-50%) rotate(-45deg) scale(1);
+    }
+    100% {
+        transform: translateX(-50%) rotate(-45deg) scale(1.2);
+    }
+}
+
+.heart:hover {
+    background: var(--glow-color);
+    box-shadow: 0 0 10px var(--glow-color);
 }
 
 /* Envelope flip animations */
@@ -70,42 +141,37 @@
     z-index: 0;
 }
 
+/* Adjust the bottom position of the letter when the envelope is open */
 .flap .letter {
-    bottom: 100px;
-    transform: translateX(-50%) scale(1.5); /* Maintain centering and enlarge */
+    bottom: 50px; /* Change this value to adjust how far upward the letter goes */
+    transform: translateX(-50%) scale(1.2); /* Maintain centering and enlarge */
     transition-delay: 0.5s;
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
-    .envelope-wrapper {
-        padding: 10px;
-        margin-top: 160px;
-    }
-    .envelope {
-        width: 250px;
-        height: 190px;
-    }
-    .letter {
-        width: 70%;
-        height: 70%;
-    }
-}
-
 @media (max-width: 480px) {
     .envelope-wrapper {
         padding: 5px;
-        margin-top: 100px;
     }
     .envelope {
-        width: 200px;
-        height: 150px;
+        width: 200px; /* Adjust the width of the envelope for smaller screens */
+        height: 150px; /* Adjust the height of the envelope for smaller screens */
     }
-    .letter {
-        width: 80%;
-        height: 60%;
+    .heart {
+        width: 12px; /* Adjust the width of the heart button for smaller screens */
+        height: 12px; /* Adjust the height of the heart button for smaller screens */
     }
-    .letter .text {
-        font-size: 6px;
+    .heart::before,
+    .heart::after {
+        width: 12px; /* Adjust the width of the heart before/after elements for smaller screens */
+        height: 12px; /* Adjust the height of the heart before/after elements for smaller screens */
+    }
+    .heart::before {
+        top: -6px; /* Adjust the top position of the heart before element for smaller screens */
+        left: 0;
+    }
+    .heart::after {
+        top: 0;
+        left: 6px; /* Adjust the left position of the heart after element for smaller screens */
     }
 }
