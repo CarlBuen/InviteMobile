@@ -103,13 +103,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var music = document.getElementById('background-music');
-            var musicTime = sessionStorage.getItem('musicTime');
+            const music = document.getElementById('background-music');
+            const musicTime = sessionStorage.getItem('musicTime');
             if (musicTime) {
                 music.currentTime = musicTime;
             }
             music.volume = 0.2; // Adjust the volume (0.0 to 1.0) for background music
-            music.play();
+            document.body.addEventListener('click', function() {
+                music.play();
+            }, { once: true });
             music.addEventListener('canplaythrough', function() {
                 console.log('Background music can play through.');
             }, false);
